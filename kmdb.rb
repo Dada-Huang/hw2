@@ -70,13 +70,28 @@
 # Delete existing data, so you'll start fresh each time this script is run.
 # Use `Model.destroy_all` code.
 # TODO!
+Studio.destroy_all
 
 # Generate models and tables, according to the domain model.
 # TODO!
+rails generate model Studio name:string
+rails generate model Movie name:string year_released:integer rated:string studio_id:integer
+
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+studio = Studio.create (name:"Warner Bros")
+movie_1 = Movie.create (title:"Batman Begins", year_released:"2005", rated:"PG-13", studio_id:studio.id)
+
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  year_released INTEGER,
+  rated TEXT,
+  studio_id INTEGER
+);
+
 
 # Prints a header for the movies output
 puts "Movies"
@@ -85,6 +100,34 @@ puts ""
 
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 1, "Bruce Wayne");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 2, "Alfred");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 3, "Ra's Al Ghul");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 4, "Rachel Dawes");
+#INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 5, "Commissioner Gordon");
+
+movies = Movie.all
+studios = Studio.all
+
+for movie in movies
+    title = movie["title"]
+    year_released = movie["year_released"]
+    rated = movie ["rated"]
+    studio_id = Studio.find_by({"id" => movie["studio_id"]})
+    studio_name = studio_id["name"]
+    puts "#{title} #{year_released} #{rated} #{studio_id}"
+end
+
+
+
+# Batman Begins          2005           PG-13  Warner Bros.
+# The Dark Knight        2008           PG-13  Warner Bros.
+# The Dark Knight Rises  2012           PG-13  Warner Bros.
+
+Movie.all.each do | movie |
+movie.
+end
+
 
 # Prints a header for the cast output
 puts ""
@@ -94,3 +137,12 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+for movie in movies
+    title = movie["title"]
+    year_released = movie["year_released"]
+    rated = movie ["rated"]
+    studio_id = Studio.find_by({"id" => movie["studio_id"]})
+    studio_name = studio_id["name"]
+    puts "#{title} #{year_released} #{rated} #{studio_id}"
+end
