@@ -133,13 +133,13 @@ Role.destroy_all
 studio_1 = Studio.new 
 studio_1 ["name"] = "Warner Bros."
 studio_1.save
-warner_bros. = Studio.find_by({"name" => "Warner Bros."})
+warner_bros = Studio.find_by({"name" => "Warner Bros."})
 
 movie_1 = Movie.new 
 movie_1 ["title"] = "Batman Begins" 
 movie_1 ["year_released"] = "2005" 
 movie_1 ["rated"] = "PG-13" 
-movie_1["studio_id"] = warner_bros.["id"]
+movie_1["studio_id"] = warner_bros["id"]
 movie_1.save
 batman_begins = Movie.find_by({"title" => "Batman Begins"})
 
@@ -147,7 +147,7 @@ movie_2 = Movie.new
 movie_2 ["title"] = "The Dark Knight" 
 movie_2 ["year_released"] = "2008" 
 movie_2 ["rated"] = "PG-13"
-movie_2 ["studio_id"] = warner_bros.["id"]
+movie_2 ["studio_id"] = warner_bros["id"]
 movie_2.save
 the_dark_knight = Movie.find_by({"title" => "The Dark Knight"})
 
@@ -155,11 +155,11 @@ movie_3 = Movie.new
 movie_3 ["title"] = "The Dark Knight Rises" 
 movie_3 ["year_released"] = "2012" 
 movie_3 ["rated"] = "PG-13" 
-movie_3 ["studio_id"] = warner_bros.["id"]
+movie_3 ["studio_id"] = warner_bros["id"]
 movie_3.save
 the_dark_knight_rises = Movie.find_by({"title" => "The Dark Knight Rises"})
 
-puts "movies: #{Movie.all.count}"
+# puts "movies: #{Movie.all.count}"
 
 actor_1 = Actor.new 
 actor_1 ["name"] = "Christian Bale"
@@ -340,22 +340,19 @@ puts ""
 #INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 4, "Rachel Dawes");
 #INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 5, "Commissioner Gordon");
 
-# movies = Movie.all
-# studios = Studio.all
+movies = Movie.all
+studios = Studio.all
 
-# for movie in movies
-#     title = movie["title"]
-#     year_released = movie["year_released"]
-#     rated = movie ["rated"]
-#     studio_id = Studio.find_by({"id" => movie["studio_id"]})
-#     studio_name = studio_id["name"]
-#     puts "#{title} #{year_released} #{rated} #{studio_id}"
-# end
+for movie in movies
+    title = movie["title"]
+    year_released = movie["year_released"]
+    rated = movie ["rated"]
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+    studio_name = studio["name"]
+    puts "#{title} #{year_released} #{rated} #{studio_name}"
+end
 
-
-# Movie.all.each do | movie |
-# movie.
-# end
+# warner_bros = Studio.find_by({"name" => "Warner Bros."})
 
 
 # Prints a header for the cast output
@@ -367,12 +364,25 @@ puts ""
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
 
-# roles = Role.all
-# actors = Actor.all
+roles = Role.all
+actors = Actor.all
 
-# for role in roles
-#     movie_id = Movie.find_by({"id" => role["movie_id"]})
-#     actor_id = Actor.find_by({"id" => role["actor_id"]})
-#     movie_title = movie_id["title"]
-#     puts "#{movie_id} #{actor_id} #{character_name}"
+for role in roles
+    movie = Movie.find_by ({"id" => role ["movie_id"]})
+    movie_title = movie ["title"]
+    actor = Actor.find_by ({"id" => role ["actor_id"]})
+    actor_name = actor ["name"]
+    character_name = role["character_name"]
+    puts "#{movie_title} #{actor_name} #{character_name}"
+end
+
+
+# for movie in movies
+#   title = movie["title"]
+#   year_released = movie["year_released"]
+#   rated = movie ["rated"]
+#   studio = Studio.find_by({"id" => movie["studio_id"]})
+#   studio_name = studio["name"]
+#   puts "#{title} #{year_released} #{rated} #{studio_name}"
 # end
+
