@@ -137,7 +137,7 @@ warner_bros = Studio.find_by({"name" => "Warner Bros."})
 
 movie_1 = Movie.new 
 movie_1 ["title"] = "Batman Begins" 
-movie_1 ["year_released"] = "2005" 
+movie_1 ["year_released"] = 2005
 movie_1 ["rated"] = "PG-13" 
 movie_1["studio_id"] = warner_bros["id"]
 movie_1.save
@@ -145,7 +145,7 @@ batman_begins = Movie.find_by({"title" => "Batman Begins"})
 
 movie_2 = Movie.new 
 movie_2 ["title"] = "The Dark Knight" 
-movie_2 ["year_released"] = "2008" 
+movie_2 ["year_released"] = 2008
 movie_2 ["rated"] = "PG-13"
 movie_2 ["studio_id"] = warner_bros["id"]
 movie_2.save
@@ -153,7 +153,7 @@ the_dark_knight = Movie.find_by({"title" => "The Dark Knight"})
 
 movie_3 = Movie.new 
 movie_3 ["title"] = "The Dark Knight Rises" 
-movie_3 ["year_released"] = "2012" 
+movie_3 ["year_released"] = 2012
 movie_3 ["rated"] = "PG-13" 
 movie_3 ["studio_id"] = warner_bros["id"]
 movie_3.save
